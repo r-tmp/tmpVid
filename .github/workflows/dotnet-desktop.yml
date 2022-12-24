@@ -43,16 +43,16 @@ jobs:
     - name: zip release
       run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
     
-    - name: set version
-      run: |
-        $build = $github.build_number
-        $v = "0.$build"
-        echo "VERSION=$v" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+    #- name: set version
+    #  run: |
+    #    $build = $github.build_number
+    #    $v = "0.$build"
+    #    echo "VERSION=$v" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
     
     - name: create tag
       uses: negz/create-tag@v1
       with:
-        version: ${{ env.VERSION }}
+        version: 0.${{ env.run_number }}
         message: ${{ github.event.inputs.message }}
         token: ${{ secrets.GITHUB_TOKEN }}
           
