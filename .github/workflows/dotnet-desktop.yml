@@ -44,7 +44,7 @@ jobs:
       run: Rename-Item -Path src\tmpVid\bin\Release\net7.0-windows\publish -NewName tmpVid
       
     - name: zip release
-      run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\tmpVid -DestinationPath .\tmpVid.zip
+      run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
         
     - name: create release
       id: create_release
