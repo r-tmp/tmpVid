@@ -35,14 +35,8 @@ jobs:
       run: Invoke-WebRequest -URI 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip' -OutFile .\ffmpeg.zip
     
     - name: extract ffmpeg
-      run: Expand-Archive -Path .\ffmpeg.zip -Force -DestinationPath .\
-      
-    - name: copy ffmpeg
-      run: Copy-Item -Path .\ffmpeg-master-latest-win64-gpl-shared\bin -Force -Destination src\tmpVid\bin\Release\net7.0-windows\publish\
-    
-    #- name: rename publish dir
-      #run: Rename-Item -Path src\tmpVid\bin\Release\net7.0-windows\publish -NewName tmpVid
-      
+      run: Expand-Archive -Path .\ffmpeg.zip -Force -DestinationPath src\tmpVid\bin\Release\net7.0-windows\publish
+        
     - name: zip release
       run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
         
