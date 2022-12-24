@@ -40,11 +40,11 @@ jobs:
     - name: copy ffmpeg
       run: Copy-Item -Path .\ffmpeg-master-latest-win64-gpl-shared\bin -Force -Destination src\tmpVid\bin\Release\net7.0-windows\publish\
     
-    - name: move publish dir
-      run: Move-Item -Path src\tmpVid\bin\Release\net7.0-windows\publish -Destination .\tmpVid
+    - name: rename publish dir
+      run: Rename-Item -Path src\tmpVid\bin\Release\net7.0-windows\publish -Destination src\tmpVid\bin\Release\net7.0-windows\tmpVid
       
     - name: zip release
-      run: Compress-Archive -Path .\tmpVid -DestinationPath .\tmpVid.zip
+      run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\tmpVid -DestinationPath .\tmpVid.zip
         
     - name: create release
       id: create_release
