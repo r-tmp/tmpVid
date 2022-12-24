@@ -31,7 +31,7 @@ jobs:
       run: curl https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip -o ffmpeg.zip
     
     - name: extract ffmpeg
-    - uses: montudor/action-zip@v1
+      uses: montudor/action-zip@v1
       with:
         args: unzip -qq ffmpeg.zip -d \
         
