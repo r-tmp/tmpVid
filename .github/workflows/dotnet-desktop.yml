@@ -39,19 +39,20 @@ jobs:
         
     - name: zip release
       run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
-    
+        
     - name: create release
-      uses: actions/create-release@latest
+      id: create_release
+      uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v0.0.${{github.run_number}}
         release_name: v0.0.${{github.run_number}}
-        body: Alpha release
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset
+    - name: upload release asset
+      id: upload-release-asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
