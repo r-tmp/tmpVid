@@ -40,6 +40,13 @@ jobs:
     - name: zip release
       run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
     
+    - name: create tag
+      uses: negz/create-tag@v1
+      with:
+        version: ${{ github.event.inputs.version }}
+        message: ${{ github.event.inputs.message }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+          
     - name: create release
       uses: ncipollo/release-action@v1
       with:
