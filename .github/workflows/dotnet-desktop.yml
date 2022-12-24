@@ -43,10 +43,16 @@ jobs:
     - name: zip release
       run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
     
+    - name: set version
+      run: |
+        $major = $(Get-Date).Year
+        $minor = $(Get-Date).Month
+        $build = $(Get-Date).Day
+        $v = "$major.$minor.$build"
+        echo "VERSION=$v" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+    
     - name: create tag
       uses: negz/create-tag@v1
-      env:
-        VERSION : 1.${{(Get-Date).Year}}
       with:
         version: ${{ VERSION }}
         message: ${{ github.event.inputs.message }}
