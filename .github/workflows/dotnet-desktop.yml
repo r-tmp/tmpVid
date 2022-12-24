@@ -54,7 +54,7 @@ jobs:
     - name: create tag
       uses: negz/create-tag@v1
       with:
-        version: ${{ VERSION }}
+        version: ${{ env.VERSION }}
         message: ${{ github.event.inputs.message }}
         token: ${{ secrets.GITHUB_TOKEN }}
           
