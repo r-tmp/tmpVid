@@ -41,7 +41,7 @@ jobs:
       run: Copy-Item -Path .\ffmpeg\ffmpeg-master-latest-win64-gpl-shared\bin\* -Destination .\src\tmpVid\bin\Release\net7.0-windows\publish
       
     - name: zip release
-      run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish -DestinationPath .\tmpVid.zip
+      run: Compress-Archive -Path src\tmpVid\bin\Release\net7.0-windows\publish\* -DestinationPath .\tmpVid.zip
         
     - name: create release
       id: create_release
