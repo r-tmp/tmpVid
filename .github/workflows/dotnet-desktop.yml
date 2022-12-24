@@ -59,7 +59,8 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
           
     - name: create release
-      uses: ncipollo/release-action@v1
+      uses: softprops/action-gh-release@v1
       with:
-        artifacts: "tmpVid.zip"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        files: tmpVid.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
