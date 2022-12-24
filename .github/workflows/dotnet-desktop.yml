@@ -12,6 +12,9 @@ jobs:
     
     runs-on: windows-latest
     
+    env:
+      VERSION : 1.0
+      
     steps:
     - name: checkout
       uses: actions/checkout@v3
@@ -20,7 +23,7 @@ jobs:
     #  uses: actions/setup-dotnet@v3
     #  with:
     #    dotnet-version: 7.0.x
-        
+    
     - name: restore
       run: |
         cd src
@@ -42,8 +45,10 @@ jobs:
     
     - name: create tag
       uses: negz/create-tag@v1
+      env:
+        VERSION : 1.${{(Get-Date).Year}}
       with:
-        version: ${{ github.event.inputs.version }}
+        version: ${{ VERSION }}
         message: ${{ github.event.inputs.message }}
         token: ${{ secrets.GITHUB_TOKEN }}
           
