@@ -45,11 +45,8 @@ jobs:
     
     - name: set version
       run: |
-        $major = $(Get-Date).Year
-        $minor = $(Get-Date).Month
-        $build = $(Get-Date).Day
-        $rev = $(Get-Date).Hour
-        $v = "$major.$minor.$build.$rev"
+        $build = $github.build_number
+        $v = "0.$build"
         echo "VERSION=$v" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
     
     - name: create tag
